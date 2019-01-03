@@ -1,5 +1,6 @@
 const User              = require('../../../models/mongo');
 const async             = require('async');
+const mongoose         = require('mongoose')
 
 exports.register = (req, res) => {
         async.series({
@@ -60,5 +61,62 @@ exports.ListUser = (req, res) =>{
         })
     }catch(err){
         Api.errorResponse(res, 500, 'error in fetching data', error)
+    }
+}
+
+exports.UserData = (req, res) =>{
+    try {
+        const id = req.body.id;
+        User.findOne({_id: new mongoose.Types.ObjectId(id) })
+        .exec((error, result)=>{
+            if(error){
+                Api.errorResponse(res, 500, 'error in fetching data', error)
+            }
+            if(result){
+                Api.successResponse(res, 200, 'users detail fetched successfully', result )
+            }
+        })
+    } catch (error) {
+        Api.errorResponse(res, 500, 'error in fetching data', error)
+    }
+}
+
+exports.UpdateUserData = (req, res) =>{
+    try {
+        const userData = req.body.data;
+        const id = req.body.id;
+        User.update({_id: new mongoose.Types.ObjectId(id) },
+        {$set: {
+            username: userData.username,
+            email: userData.Email,
+            name: userData.Name
+        }})
+        .exec((error, result)=>{
+            if(error){
+                Api.errorResponse(res, 500, 'error in updating data', error)
+            }
+            if(result){
+                Api.successResponse(res, 200, 'users data updated successfully', result )
+            }
+        })
+    } catch (error) {
+        Api.errorResponse(res, 500, 'error in updating data', error)
+    }
+}
+
+exports.DeleteUser = (req, res) =>{
+    try {
+        const id = req.body.id;
+        User.remove({_id: new mongoose.Types.ObjectId(id) })
+        .exec((error, result)=>{
+            if(error){
+                Api.errorResponse(res, 500, 'error in deleting data', error)
+            }
+            if(result){
+                Api.successResponse(res, 200, 'user deleted successfully', result )
+            }
+        })
+    } catch (error) {
+        Api.errorResponse(res, 500, 'error in deleting data', error)
     }
 }
