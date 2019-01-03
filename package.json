@@ -1,0 +1,31 @@
+{
+  "name": "node_backend_skeleton",
+  "version": "1.0.0",
+  "description": "",
+  "main": "src/app.js",
+  "scripts": {
+    "start": "nodemon app.js"
+  },
+  "author": "Vijay <vijaypratap218@gmail.com> (https://registry.npmjs.org/.)",
+  "license": "ISC",
+  "dependencies": {
+    "async": "^2.6.1",
+    "body-parser": "^1.18.3",
+    "cors": "^2.8.4",
+    "ejs": "^2.6.1",
+    "express": "^4.16.3",
+    "express-ejs-extend": "0.0.1",
+    "faker": "^4.1.0",
+    "jsonwebtoken": "^8.3.0",
+    "lodash": "^4.17.11",
+    "mongoose": "^5.3.2",
+    "morgan": "^1.9.0",
+    "mysql": "^2.16.0",
+    "mysql2": "^1.6.1",
+    "nodemailer": "^4.6.8",
+    "nodemon": "^1.18.3",
+    "sequelize": "^4.39.0",
+    "sequelize-cli": "^5.1.0",
+    "serve-favicon": "^2.5.0"
+  }
+}
